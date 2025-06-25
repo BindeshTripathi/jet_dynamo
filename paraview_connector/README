@@ -1,1 +1,2 @@
-Using the above script, Paraview is launced on a remote supercomputer where high-resolution data are stored. Visualizations are then created using GUI and customized python scripts.
+Using the above script, Paraview is launched on a remote supercomputer where high-resolution data are stored. 
+Visualizations are then created using GUI and customized python scripts.
