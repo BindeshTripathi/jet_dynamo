@@ -255,11 +255,11 @@ bz_P = wavenumber_filter(filter_type, data_reader('b', 'z', count_t), k_inside, 
 current_time = datetime.now()
 print("Step 4 done. Current time:", current_time.strftime("%H:%M:%S"))
 
-Pi_u_to_u = (-1) * transfer_function(ux_P, uy_P, uz_P, data_reader('u', 'x', count_t), data_reader('u', 'y', count_t), data_reader('u', 'z', count_t), data_reader('u', 'x', count_t), data_reader('u', 'y', count_t), data_reader('u', 'z', count_t))
+Pi_u_to_u = transfer_function(ux_P, uy_P, uz_P, data_reader('u', 'x', count_t), data_reader('u', 'y', count_t), data_reader('u', 'z', count_t), data_reader('u', 'x', count_t), data_reader('u', 'y', count_t), data_reader('u', 'z', count_t))
 
 print(f"Time: {count_t}, pp: {pp}, Pi_u_to_u: {Pi_u_to_u}")
 
-Pi_b_to_b = (-1) * transfer_function(bx_P, by_P, bz_P, data_reader('u', 'x', count_t), data_reader('u', 'y', count_t), data_reader('u', 'z', count_t), data_reader('b', 'x', count_t), data_reader('b', 'y', count_t), data_reader('b', 'z', count_t))
+Pi_b_to_b = transfer_function(bx_P, by_P, bz_P, data_reader('u', 'x', count_t), data_reader('u', 'y', count_t), data_reader('u', 'z', count_t), data_reader('b', 'x', count_t), data_reader('b', 'y', count_t), data_reader('b', 'z', count_t))
 
 print(f"Time: {count_t}, pp: {pp}, Pi_u_to_u: {Pi_u_to_u}, Pi_b_to_b: {Pi_b_to_b}")
 current_time = datetime.now()
