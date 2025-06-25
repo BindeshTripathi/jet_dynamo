@@ -20,10 +20,10 @@ Then, such ICs are imported here.
            <-------
 
 UPDATE:
-All magnetic variables are decomposed into a background and time-evolving components, 
+All magnetic variables are decomposed into background and time-evolving parts, 
 where the background means A_b such that curl of A_b = (B_0 costheta, B_0 sintheta, 0). This is needed 
-as expanding the inital condition of A, when no decomposed as above has A_b---a linear function of x and y
----that we are demanding to expand in periodic basis, and that is numerically worrisome! So, I have now separated
+as the vector potential A_b of a uniform background magnetic field is a linear function of spatial coordinates, 
+which is numerically worrisome to expand in finite number of periodic basis functions. So, I have now separated
 the linear and nonlinear, meaning background and time-evolving components of the A/B field in the MHD equations.
 The flow, however, is solved without doing such a decomposition, as it is not necessary.
  
