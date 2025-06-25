@@ -1,0 +1,7 @@
+The above scripts compute nonlinear energy transfer flux in spectral space. 
+
+The first script loads the entire 3D MHD snapshot at the same time, after which computations are performed. 
+Thus, this first script is useful only for lower-resolution simulations.
+
+The second script is customized to work with 4096 x 4096 x 8192 grid-point simulation data, 
+for which a single MHD snapshot (3 components of velocity and 3 components of magnetic fields) is 6 terabytes.
