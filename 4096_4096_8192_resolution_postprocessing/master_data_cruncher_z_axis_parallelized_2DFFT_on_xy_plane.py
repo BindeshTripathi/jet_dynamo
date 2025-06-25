@@ -20,7 +20,7 @@ ny             = int(sys.argv[5])
 nz             = int(sys.argv[6])
 add_this_to_z_axis_ind_for_jobarray_handling = int(sys.argv[7])
 z_axis_ind     = add_this_to_z_axis_ind_for_jobarray_handling + int(sys.argv[8]) #So, actual z_axis_ind is add_this_to_z_axis_ind_for_jobarray_handling + z_axis_ind. Job array does not accept values larger than 999.
-#parallelization along the z-axis, by using 2D FFTs on the x-y plane. I am using cylindrical shells here. You won't be able to do this in spherical shell calculations.
+#parallelization along the z-axis, by using 2D FFTs on the x-y plane. I am using cylindrical shells here.
 
 z_derivative_accuracy = "fourth_order" #Options are "second_order" and "fourth_order". 
 
