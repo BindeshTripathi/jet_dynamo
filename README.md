@@ -2,7 +2,7 @@ This repository contains materials related to
 
 "Large-Scale Dynamos Driven by Shear-Flow-Induced Jets"
 
-to be published in _Nature_ 2025.
+for publication in _Nature_ 2025.
 
 Authors: B. Tripathi, A.E. Fraser, P.W. Terry, E.G. Zweibel, M.J. Pueschel, and R. Fan
 
