@@ -1,0 +1,8 @@
+./MHD is the FORTRAN executable for simulating Kelvin-Helmholtz-instability-driven MHD dynamo, with a maintained mean shear flow.
+
+bin.zip contains files and folders for binary output and input files.
+
+src.zip contains files and folders for source code. Resolution for the simulation is set in Makefile.in. Files for new time-integrators are available in src.
+
+
+
