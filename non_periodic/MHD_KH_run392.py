@@ -29,7 +29,7 @@ The flow, however, is solved without doing such a decomposition, as it is not ne
  
  
 ---Bindesh Tripathi
-June, 2023.
+June 2023.
 
 """
 
