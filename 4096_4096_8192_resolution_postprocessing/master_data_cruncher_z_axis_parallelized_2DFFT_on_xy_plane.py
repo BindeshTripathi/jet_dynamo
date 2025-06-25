@@ -22,14 +22,6 @@ add_this_to_z_axis_ind_for_jobarray_handling = int(sys.argv[7])
 z_axis_ind     = add_this_to_z_axis_ind_for_jobarray_handling + int(sys.argv[8]) #So, actual z_axis_ind is add_this_to_z_axis_ind_for_jobarray_handling + z_axis_ind. Job array does not accept values larger than 999.
 #parallelization along the z-axis, by using 2D FFTs on the x-y plane. I am using cylindrical shells here. You won't be able to do this in spherical shell calculations.
 
-# run_number_IVP = "run576" #sys.argv[1]
-# add_this_to_count_t_for_jobarray_handling = 0# int(sys.argv[2]) #e.g., this can be 0, or 1000, or 2000, etc. 
-# count_t        = 6 #int(sys.argv[3]) + add_this_to_count_t_for_jobarray_handling  #So, actual count_t is add_this_to_count_t_for_jobarray_handling + count_t. Job array does not accept values larger than 999.
-# nx             = 16*256 #int(sys.argv[4])
-# ny             = 16*256 #int(sys.argv[5])
-# nz             = 16*512 #int(sys.argv[6])
-# z_axis_ind     = 0 #int(sys.argv[7]) #parallelization along the z-axis, by using 2D FFTs on the x-y plane. I am using cylindrical shells here. You won't be able to do this in spherical shell calculations.
-
 z_derivative_accuracy = "fourth_order" #Options are "second_order" and "fourth_order". 
 
 # Box size
@@ -38,7 +30,6 @@ Ly = 10*np.pi
 Lz = 20*np.pi
 
 #Shell-decomposed energy transfer function.
-#k_shell_arr = np.linspace(0,int(nx/2)*2*np.pi/Lx, int(nx/2+1)) #I might use logarithmic binning afterward. For now, linear binning.
 k_logarithmic_index_max = int(4*np.log(nx/8)/np.log(2) + 1)
 k_logarithmic_indices = np.append(1, 2**(2+1/4*(-1 + np.linspace(0, k_logarithmic_index_max, k_logarithmic_index_max+1))))
 k_shell_arr = 2*np.pi/Lx * k_logarithmic_indices
@@ -48,7 +39,6 @@ filter_type = "cylindrical_shells"
 t_step_for_analysis = 1
 
 path = '/anvil/scratch/x-btripathi/oct2020/%s/' %run_number_IVP
-#path = '/anvil/projects/x-phy130027/phd2020/GHOST_BT/main_files/GHOST-master/%s/bin/' %run_number_IVP
 
 
 ################################
@@ -62,7 +52,7 @@ directory_name_for_saving_output = "cross_scale_energy_flux_%s_%s" %(filter_type
 ########################################
 start_time = time.time()
 
-file_dir_1 = '/anvil/projects/x-phy130027/phd2020/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/%s' %(directory_name_for_saving_output)
+file_dir_1 = '/anvil/projects/x-phy130027/phd2019/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/%s' %(directory_name_for_saving_output)
 path_1 = file_dir_1
 
 if CW.rank == 0:
@@ -436,7 +426,7 @@ for pp in range(0,k_shell_arr.shape[0]-1):
     print("Current time:", current_time.strftime("%H:%M:%S"))
 
 ################################
-hf = h5py.File(f'/anvil/projects/x-phy130027/phd2020/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/{directory_name_for_saving_output}/{run_number_IVP}_time_{count_t}_all_Log_Radial_Wavenumbers_for_z_axis_ind_{z_axis_ind}.h5', 'w')
+hf = h5py.File(f'/anvil/projects/x-phy130027/phd2019/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/{directory_name_for_saving_output}/{run_number_IVP}_time_{count_t}_all_Log_Radial_Wavenumbers_for_z_axis_ind_{z_axis_ind}.h5', 'w')
 
 g11 = hf.create_group('Pi_u_to_u')
 g11.create_dataset('Pi_u_to_u',data=Pi_u_to_u)
