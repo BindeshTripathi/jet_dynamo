@@ -417,9 +417,9 @@ for pp in range(0,k_shell_arr.shape[0]-1):
     by_P = wavenumber_filter(filter_type, xy_slice_data_reader('b', 'y', count_t, z_axis_ind), k_inside, k_outside)
     bz_P = wavenumber_filter(filter_type, xy_slice_data_reader('b', 'z', count_t, z_axis_ind), k_inside, k_outside)
 
-    Pi_u_to_u[pp] = (-1) * transfer_function(ux_P, uy_P, uz_P, xy_slice_data_reader('u', 'x', count_t, z_axis_ind), xy_slice_data_reader('u', 'y', count_t, z_axis_ind), xy_slice_data_reader('u', 'z', count_t, z_axis_ind), xy_slice_data_reader('u', 'x', count_t, z_axis_ind), xy_slice_data_reader('u', 'y', count_t, z_axis_ind), xy_slice_data_reader('u', 'z', count_t, z_axis_ind), "u_type")
+    Pi_u_to_u[pp] = transfer_function(ux_P, uy_P, uz_P, xy_slice_data_reader('u', 'x', count_t, z_axis_ind), xy_slice_data_reader('u', 'y', count_t, z_axis_ind), xy_slice_data_reader('u', 'z', count_t, z_axis_ind), xy_slice_data_reader('u', 'x', count_t, z_axis_ind), xy_slice_data_reader('u', 'y', count_t, z_axis_ind), xy_slice_data_reader('u', 'z', count_t, z_axis_ind), "u_type")
 
-    Pi_b_to_b[pp] = (-1) * transfer_function(bx_P, by_P, bz_P, xy_slice_data_reader('u', 'x', count_t, z_axis_ind), xy_slice_data_reader('u', 'y', count_t, z_axis_ind), xy_slice_data_reader('u', 'z', count_t, z_axis_ind), xy_slice_data_reader('b', 'x', count_t, z_axis_ind), xy_slice_data_reader('b', 'y', count_t, z_axis_ind), xy_slice_data_reader('b', 'z', count_t, z_axis_ind), "b_type")
+    Pi_b_to_b[pp] = transfer_function(bx_P, by_P, bz_P, xy_slice_data_reader('u', 'x', count_t, z_axis_ind), xy_slice_data_reader('u', 'y', count_t, z_axis_ind), xy_slice_data_reader('u', 'z', count_t, z_axis_ind), xy_slice_data_reader('b', 'x', count_t, z_axis_ind), xy_slice_data_reader('b', 'y', count_t, z_axis_ind), xy_slice_data_reader('b', 'z', count_t, z_axis_ind), "b_type")
 
     print(f"Time: {count_t}, pp: {pp}, z_axis_ind: {z_axis_ind}, To-be-z-avgd Pi_u_to_u: {Pi_u_to_u[pp]}, To-be-z-avgd Pi_b_to_b: {Pi_b_to_b[pp]}")
     current_time = datetime.now()
