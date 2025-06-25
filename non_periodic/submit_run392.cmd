@@ -6,7 +6,7 @@
 ##SBATCH --ntasks-per-node 128  #64
 #SBATCH -N 256 # Total # of nodes (now required)
 #SBATCH -p wide #wide #wholenode  # Queue (partition) name -- normal, development, skx-normal, etc.
-#SBATCH -t 48:00:00     # Run time (hh:mm:ss) - 1.5 hours
+#SBATCH -t 96:00:00     # Run time (hh:mm:ss) - 1.5 hours
 #SBATCH --mail-user=btripathi@wisc.edu 
 #SBATCH --mail-type=all   #begin, end, fail, or all
 #####SBATCH -A TG-PHY130027
