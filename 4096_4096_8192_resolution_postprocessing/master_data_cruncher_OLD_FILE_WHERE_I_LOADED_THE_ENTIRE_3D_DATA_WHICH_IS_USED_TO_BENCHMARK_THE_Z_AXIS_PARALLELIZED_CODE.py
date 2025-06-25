@@ -26,7 +26,6 @@ Ly = 10*np.pi
 Lz = 20*np.pi
 
 #Shell-decomposed energy transfer function.
-#k_shell_arr = np.linspace(0,int(nx/2)*2*np.pi/Lx, int(nx/2+1)) #I might use logarithmic binning afterward. For now, linear binning.
 k_logarithmic_index_max = int(4*np.log(nx/8)/np.log(2) + 1)
 k_logarithmic_indices = np.append(1, 2**(2+1/4*(-1 + np.linspace(0, k_logarithmic_index_max, k_logarithmic_index_max+1))))
 k_shell_arr = 2*np.pi/Lx * k_logarithmic_indices
@@ -36,21 +35,17 @@ filter_type = "cylindrical_shells"
 t_step_for_analysis = 1
 
 path = '/anvil/scratch/x-btripathi/oct2020/%s/' %run_number_IVP
-#path = '/anvil/projects/x-phy130027/phd2020/GHOST_BT/main_files/GHOST-master/%s/bin/' %run_number_IVP
-
 
 ################################
-
 shape = (nx,ny,nz)
 dtype = np.float64
 
 directory_name_for_saving_output = "cross_scale_energy_flux_%s_%s" %(filter_type, run_number_IVP)
 
-
 ########################################
 start_time = time.time()
 
-file_dir_1 = '/anvil/projects/x-phy130027/phd2020/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/%s' %(directory_name_for_saving_output)
+file_dir_1 = '/anvil/projects/x-phy130027/phd2019/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/%s' %(directory_name_for_saving_output)
 path_1 = file_dir_1
 
 if CW.rank == 0:
@@ -67,22 +62,6 @@ if CW.rank == 0:
 kx_array = np.zeros((int(nx/2+1), ny, nz))
 ky_array = np.zeros((int(nx/2+1), ny, nz))
 kz_array = np.zeros((int(nx/2+1), ny, nz))
-
-        
-# for jj in range(0,ny):
-#     for kk in range(0,nz):
-#         kx_array[:int(nx/2+1),jj,kk] = np.linspace(0, 2*np.pi/Lx*nx/2, int(nx/2+1))
-        
-# for ii in range(0,int(nx/2+1)):
-#     for kk in range(0,nz):
-#         ky_array[ii,0:int(ny/2+1),kk] =        np.linspace(0, 2*np.pi/Ly*int(ny/2), int(ny/2+1))
-#         ky_array[ii,int(ny/2+1): ,kk] = (-1) * np.linspace(0, 2*np.pi/Ly*int(ny/2), int(ny/2+1))[::-1][1:-1]
-        
-# for ii in range(0,int(nx/2+1)):
-#     for jj in range(0,ny):
-#         kz_array[ii,jj,0:int(nz/2+1)] =         np.linspace(0, 2*np.pi/Lz*int(nz/2), int(nz/2+1))
-#         kz_array[ii,jj,int(nz/2+1): ] =  (-1) * np.linspace(0, 2*np.pi/Lz*int(nz/2), int(nz/2+1))[::-1][1:-1]
-        
 
 current_time = datetime.now()
 print("Step 0 done. Current time:", current_time.strftime("%H:%M:%S"))
@@ -251,33 +230,13 @@ print("Step 1 done. Current time:", current_time.strftime("%H:%M:%S"))
 
 nfiles = np.size(sorted(glob.glob(path+'vz.*.out')))
 
-#Pi_u_to_u = np.zeros(k_shell_arr.shape[0], dtype=np.float64)
-#Pi_b_to_b = np.zeros(k_shell_arr.shape[0], dtype=np.float64)
-
-
-#ux_data = data_reader('u', 'x', count_t)
-#uy_data = data_reader('u', 'y', count_t)
-#uz_data = data_reader('u', 'z', count_t)
-
-#Ox_data = data_reader('O', 'x', count_t)
-#Oy_data = data_reader('O', 'y', count_t)
-#Oz_data = data_reader('O', 'z', count_t)
-
-#ax_data = data_reader('a', 'x', count_t)
-#ay_data = data_reader('a', 'y', count_t)
-#az_data = data_reader('a', 'z', count_t)
-
-#bx_data = data_reader('b', 'x', count_t)
-#by_data = data_reader('b', 'y', count_t)
-#bz_data = data_reader('b', 'z', count_t)
-
 print(count_t)
 current_time = datetime.now()
 print("Step 2 done. Current time:", current_time.strftime("%H:%M:%S"))
 
 #for pp in range(0,k_shell_arr.shape[0]-1):
-k_inside = 0 #This is ONLY for energy flux, where wavenumbers are cumulatively added. This is NOT for energy transfer where individual wavenumber is selected, not cumulative.
-k_outside = k_shell_arr[pp] #This is for run567 where I use logarithmic binning of wavenumbers using cylindrical shells
+k_inside = 0 #This is ONLY for energy flux, where wavenumbers are cumulatively added.
+k_outside = k_shell_arr[pp] 
 
 #k_inside = k_shell_arr[pp]
 #k_outside = k_shell_arr[pp+1]
@@ -306,13 +265,10 @@ print(f"Time: {count_t}, pp: {pp}, Pi_u_to_u: {Pi_u_to_u}, Pi_b_to_b: {Pi_b_to_b
 current_time = datetime.now()
 print("Current time:", current_time.strftime("%H:%M:%S"))
 
-
-
 print(f"Job complete for {count_t}.")
 
-
 ################################
-hf = h5py.File(f'/anvil/projects/x-phy130027/phd2020/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/{directory_name_for_saving_output}/{run_number_IVP}_time_{count_t}_RadialWavenumberIndex_{pp}.h5', 'w')
+hf = h5py.File(f'/anvil/projects/x-phy130027/phd2019/processed_data_for_dynamo_paper/dynamo_paper_1_publication_figure_data/{directory_name_for_saving_output}/{run_number_IVP}_time_{count_t}_RadialWavenumberIndex_{pp}.h5', 'w')
 
 g11 = hf.create_group('Pi_u_to_u')
 g11.create_dataset('Pi_u_to_u',data=Pi_u_to_u)
