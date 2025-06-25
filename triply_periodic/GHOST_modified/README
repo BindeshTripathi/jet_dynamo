@@ -2,7 +2,7 @@
 
 bin.zip contains files and folders for binary output and input files.
 
-src.zip contains files and folders for source codes. Resolution for the simulation is set in Makefile.in. New time-integrators are located in src.
+src.zip contains files and folders for source codes. Resolution for the simulation is set in Makefile.in. New time-integrators are added in files in src.
 
 
 
