@@ -1,4 +1,4 @@
-This repository contains materials related to
+This repository hosts materials related to
 
 "Large-Scale Dynamos Driven by Shear-Flow-Induced Jets"
 
